@@ -24,3 +24,18 @@ class EmailPost(forms.Form):
             headers={'Reply-to': email}
         )
         mail.send()
+
+
+class ComentarioPost(forms.Form):
+    nome = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    comentario = forms.CharField(required=True, widget=forms.Textarea)
+
+    def comentar(self, meupost):
+        nome = self.cleaned_data['nome']
+        email = self.cleaned_data['email']
+        comentario = self.cleaned_data['comentario']
+
+        comentarioData = [nome, email, comentario]
+
+        return comentarioData
