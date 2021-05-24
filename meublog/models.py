@@ -40,3 +40,26 @@ class Post(models.Model):
     def __str__(self):
         return self.titulo
 
+
+class Comentario(models.Model):
+    STATUS_CHOICES = (
+        ('ativo', 'Ativo'),
+        ('inativo', 'Inativo')
+    )
+    objects = models.Manager()
+    publicado = PublicadosManager()
+
+    nome = models.CharField(max_length=250)
+    email = models.EmailField(max_length=100)
+    comentario = models.TextField()
+    criado = models.DateTimeField(default=timezone.now)
+    atualizado = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=7, choices=STATUS_CHOICES, default='ativo')
+
+    class Meta:
+        ordering = ('-criado',)
+        verbose_name = "Comentario"
+        verbose_name_plural = "Comentarios"
+
+    def __str__(self):
+        return self.nome
