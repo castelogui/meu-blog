@@ -11,6 +11,13 @@
         {{ post.corpo | linebreaks }}
     </p>
     <br>
+
+    <h4>
+        <a href="{% url 'meublog:comentar' post.pk %}">
+             Comentar
+        </a>
+    </h4>
+
     <h4>
         <a href="{% url 'meublog:share_post' post.pk %}">
             Enviar este post...
