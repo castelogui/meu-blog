@@ -5,7 +5,7 @@
 {% block conteudo %}
     <h1> {{ post.titulo }} </h1>
     <p class="date">
-        Publicado em: {{ p.publicados }} por {{ p.autor }}
+        Publicado em: {{ post.publicados }} por {{ post.autor }}
     </p>
     <p>
         {{ post.corpo | linebreaks }}
@@ -13,14 +13,18 @@
     <br>
 
     <h4>
+        <a href="{% url 'meublog:share_post' post.pk %}">
+            Enviar este post...
+        </a>
+    </h4>
+    <h4>
         <a href="{% url 'meublog:comentar' post.pk %}">
              Comentar
         </a>
     </h4>
-
     <h4>
-        <a href="{% url 'meublog:share_post' post.pk %}">
-            Enviar este post...
+        <a href="{% url 'meublog:comentarios' post.pk %}">
+             Comentarios
         </a>
     </h4>
 
