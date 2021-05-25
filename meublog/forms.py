@@ -1,6 +1,6 @@
 from django import forms
 from django.core.mail import EmailMessage
-
+from .models import Comentario
 
 class EmailPost(forms.Form):
     nome = forms.CharField(max_length=100)
@@ -36,6 +36,10 @@ class ComentarioPost(forms.Form):
         email = self.cleaned_data['email']
         comentario = self.cleaned_data['comentario']
 
-        comentarioData = [nome, email, comentario]
-
-        return comentarioData
+        comment = Comentario(
+            nome=nome,
+            email=email,
+            comentario=comentario,
+            post=meupost
+        )
+        comment.save()
