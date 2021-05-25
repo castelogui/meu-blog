@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.views.generic import ListView, DetailView, FormView
 
 from .forms import EmailPost, ComentarioPost
-from .models import Post, Comentario
+from .models import Comentario, Post
 
 
 class ListarPostView(ListView):
@@ -11,6 +11,12 @@ class ListarPostView(ListView):
     context_object_name = 'posts'
     paginate_by = 5
     template_name = "meublog/post/listarposts.html"
+
+
+class ListarComentarioView(ListView):
+    queryset = Comentario.publicado.all()
+    context_object_name = 'comentarios'
+    template_name = "meublog/post/listarcomentarios.html"
 
 
 class DetalharPostView(DetailView):
@@ -52,7 +58,7 @@ class FormContatoView(FormView):
 class FormComentarioView(FormView):
     template_name = 'meublog/post/comentar.html'
     form_class = ComentarioPost
-    success_url = reverse_lazy('meublog:detalharpost')
+    success_url = reverse_lazy('meublog:listar_posts')
 
     def get_post(self, id_post):
         try:
@@ -69,7 +75,6 @@ class FormComentarioView(FormView):
     def form_valid(self, form, *args, **kwargs):
         meupost = self.get_context_data()['post']
         form.comentar(meupost)
-        form.save()
 
         return super(FormComentarioView,self).form_valid(form, *args, **kwargs)
 
