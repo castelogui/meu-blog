@@ -15,8 +15,6 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Comentario)
 class ComentarioAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'email', 'comentario', 'criado', 'atualizado', 'status')
+    list_display = ('nome', 'email', 'comentario', 'post', 'criado', 'atualizado', 'status')
     list_filter = ('status', 'criado', 'atualizado', 'email')
-    search_fields = ('nome', 'email', 'comentario')
-    date_hierarchy = 'atualizado'
-    ordering = ('status', '-atualizado')
+    
