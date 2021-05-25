@@ -1,6 +1,18 @@
 # meu-blog
 
-Atividade de Programação Web III - Desenvolvendo um blog com Django 
+------
+
+**Alunos:** Guilherme, Daniel, Harlesson
+
+**Professor:** Marcos Faino
+
+**Curso Superior Tecnólogo em Análise e Desenvovimento de Sistemas**
+
+**IFRO - Campus Ariquemes**
+
+----
+
+Atividade de **Programação Web III** - Desenvolvendo um blog com Django 
 
 Continue a criação do blog, dessa vez adicionando um sistema de adição de comentários aos posts
 
@@ -16,6 +28,7 @@ Continue a criação do blog, dessa vez adicionando um sistema de adição de co
 - 3. Adicionar uma view que processe o formulário e salve um novo comentário no banco de dados.
 - 4. Modificar o template de detalhes do post para exibir a lista de comentários e o formulário para adicionar um novo comentário.
 
+------
 
 ![PostsAdmin](images/git/postsAdmin.png)
 ![Listar posts](images/git/listposts.png)
