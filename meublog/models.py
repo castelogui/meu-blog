@@ -55,6 +55,7 @@ class Comentario(models.Model):
     criado = models.DateTimeField(default=timezone.now)
     atualizado = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=7, choices=STATUS_CHOICES, default='ativo')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ('-criado',)
