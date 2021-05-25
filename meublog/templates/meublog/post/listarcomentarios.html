@@ -1,0 +1,16 @@
+{% extends 'meublog/base.html' %}
+
+{% block conteudo %}
+    <h3>Comentarios </h3>
+    {% for c in comentarios %}
+        <h4>
+            {{ c.nome }}
+        </h4>
+        <p class="date">
+            Publicado em: {{ c.criado }} por {{ c.email }}
+        </p>
+        <p>
+            {{ c.comentario | truncatewords:15 | linebreaks }}
+        </p>
+    {% endfor %}
+{% endblock %}
