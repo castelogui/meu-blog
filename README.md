@@ -25,9 +25,9 @@ Continue a criação do blog, dessa vez adicionando um sistema de adição de co
   ![Comentando1](images/git/comentando1.png)
   ![Comentando2](images/git/comentando.png)
 
-- [ ] Adicionar uma view que processe o formulário e salve um novo comentário no banco de dados.
+- [x] Adicionar uma view que processe o formulário e salve um novo comentário no banco de dados.
   
-- [ ] Modificar o template de detalhes do post para exibir a lista de comentários e o formulário para adicionar um novo comentário.
+- [x] Modificar o template de detalhes do post para exibir a lista de comentários e o formulário para adicionar um novo comentário.
 
 ------
 
