@@ -13,19 +13,35 @@
     <br>
 
     <h4>
-        <a href="{% url 'meublog:share_post' post.pk %}">
-            Enviar este post...
-        </a>
+        <span style="margin-right:10px; margin-left:10px">
+            <a href="{% url 'meublog:share_post' post.pk %}">
+                Compartilhar
+            </a>
+        </span>
+        <span style="margin-right:10px; margin-left:10px">
+            <a href="{% url 'meublog:comentar_post' post.id %}">
+                Comentar
+            </a>
+        </span>
     </h4>
+    {% for c in coments %}
+        <h3>
+            {{ c.nome }}
+        </h3>
+        <p class="date">
+            {{ c.email }} em: {{ c.criado }}
+        </p>
+        <p>
+            {{ c.comentario }}
+        </p>
+    {% endfor %}
     <h4>
-        <a href="{% url 'meublog:comentar' post.pk %}">
-             Comentar
-        </a>
+        <span style="margin-right:10px; margin-left:10px">
+            <a href="{% url 'meublog:comentar_post' post.id %}">
+                Add Comment
+            </a>
+        </span>
     </h4>
-    <h4>
-        <a href="{% url 'meublog:comentarios' post.pk %}">
-             Comentarios
-        </a>
-    </h4>
+
 
 {% endblock %}
