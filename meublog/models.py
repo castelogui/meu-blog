@@ -26,11 +26,7 @@ class Post(models.Model):
     status = models.CharField(max_length=9, choices=STATUS_CHOICES, default='rascunho')
 
     def gwt_absolute_url(self):
-        return reverse('meublog:detalhe',
-                       args=[self.publicados.year,
-                             self.publicados.month,
-                             self.publicados.day,
-                             self.slug])
+        return reverse('meublog:detalhe', args=[self.slug])
 
     class Meta:
         ordering = ('-publicados',)
@@ -42,25 +38,17 @@ class Post(models.Model):
 
 
 class Comentario(models.Model):
-    STATUS_CHOICES = (
-        ('ativo', 'Ativo'),
-        ('inativo', 'Inativo')
-    )
-    objects = models.Manager()
-    publicado = PublicadosManager()
 
-    nome = models.CharField(max_length=250)
-    email = models.EmailField(max_length=100)
-    comentario = models.TextField()
-    criado = models.DateTimeField(default=timezone.now)
-    atualizado = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=7, choices=STATUS_CHOICES, default='ativo')
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    nome = models.CharField('Nome', max_length=100)
+    email = models.EmailField('E-mail')
+    comentario = models.TextField('Comentário')
+    criado = models.DateTimeField('Data Criação', auto_now_add=True)
+    status = models.BooleanField('Ativo', default=False)
 
     class Meta:
-        ordering = ('-criado',)
         verbose_name = "Comentario"
         verbose_name_plural = "Comentarios"
 
     def __str__(self):
-        return self.nome
+        return 'Comentado por: ' + self.nome
