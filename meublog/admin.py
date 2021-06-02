@@ -15,6 +15,6 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Comentario)
 class ComentarioAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'email', 'comentario', 'post', 'criado', 'atualizado', 'status')
-    list_filter = ('status', 'criado', 'atualizado', 'email')
-    
+    list_display = ('nome', 'post', 'email', 'criado', 'status')
+    list_filter = ('status', 'criado')
+    ordering = ('post', 'status', 'criado')
