@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 
 from meublog.models import Comentario
@@ -40,3 +42,9 @@ class ComentarioModelForm(forms.ModelForm):
         new_comment.email = self.cleaned_data['email']
         new_comment.comentario = self.cleaned_data['comentario']
         return new_comment.save()
+
+
+class CadUsuarioForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
