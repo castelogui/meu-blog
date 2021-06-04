@@ -3,10 +3,32 @@
 {% block titulo %} Comentando {{ post.titulo }} {% endblock %}
 
 {% block conteudo %}
+{% if user.is_authenticated %}
     <h1>Comentando no Post {{ post.titulo }} </h1>
     <form action="" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Enviar">
+        <div class="form-group">
+            <label for="usuario">Usuario</label>
+            <input type="text" id="usuario" name="nome" value="{{ user.username }}" readonly/>
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="text" id="email" name="email" value="{{ user.email }}" readonly/>
+        </div>
+        <div class="form-group">
+            <label for="comentario">Comentario</label>
+            <textarea id="comentario" name="comentario" rows="6" cols="23"></textarea>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Enviar">
+        </div>
     </form>
+{% else %}
+    <h3 class="alert">Página disponível apenas para usuários autenticados</h3>
+    <h4 class="warning">Faça login ou cadastre-se</h4>
+    <p><a href="{% url 'meublog:loginuser' %}" class="btn btn-primary">Logar</a> </p>
+    <p><a href="{% url 'meublog:cadastrouser' %}" class="btn btn-primary">Cadastrar</a> </p>
+    <p><a href="{% url 'meublog:listar_posts' %}" class="btn btn-primary">Página Inicial</a> </p>
+{% endif %}
 {% endblock %}
