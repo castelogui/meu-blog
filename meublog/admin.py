@@ -17,4 +17,4 @@ class PostAdmin(admin.ModelAdmin):
 class ComentarioAdmin(admin.ModelAdmin):
     list_display = ('nome', 'post', 'email', 'criado', 'status')
     list_filter = ('status', 'criado')
-    ordering = ('post', 'status', 'criado')
+    ordering = ('status', 'post', 'criado')
