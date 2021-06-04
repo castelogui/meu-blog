@@ -1,9 +1,14 @@
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from django.contrib.auth.views import LogoutView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic import ListView, DetailView, FormView, CreateView
 
-from .forms import EmailPost, ComentarioModelForm
+from .forms import EmailPost, ComentarioModelForm, CadUsuarioForm
 from .models import Post, Comentario
 
 
@@ -80,3 +85,44 @@ class ComentarioView(CreateView):
         post = self.get_post(self.kwargs['pk'])
         form.comentar(post)
         return redirect('meublog:detalhe', post.slug)
+
+
+class CadUsuarioView(CreateView):
+    template_name = 'meublog/usuarios/cadusuario.html' # criar depois
+    form_class = CadUsuarioForm
+    success_url = reverse_lazy('meublog:loginuser') # criar depois
+
+    def form_valid(self, form, *args, **kwargs):
+        form.cleaned_data
+        messages.success(self.request, f'Usuário Cadastrado')
+        return super(CadUsuarioView, self).form_valid(form, *args, **kwargs)
+
+    def form_invalid(self, form, *args, **kwargs):
+        messages.error(self.request, f'Usuário Não Cadastrado!')
+        return super(CadUsuarioView, self).form_invalid(form, *args, **kwargs)
+
+
+class LoginUsuarioView(FormView):
+    template_name = 'meublog/usuarios/login.html'
+    model = User
+    form_class = AuthenticationForm
+    sucess_url = reverse_lazy('meublog:listar_posts')
+
+    def form_valid(self, form):
+        nome = form.cleaned_data['username']
+        senha = form.cleaned_data['password']
+        usuario = authenticate(self.request, username=nome, password=senha)
+        if usuario is not None:
+            login(self.request, usuario)
+            return redirect('meublog:listar_posts')
+        messages.error(self.request, f'Usuário não existe')
+        return redirect('meublog:loginuser')
+
+    def form_invalid(self, form, *args, **kwargs):
+        messages.error(self.request, f'Login não realizado!')
+        return redirect('meublog:listar_posts')
+
+class LogoutUsuarioView(LoginRequiredMixin, LogoutView):
+    def get(self, request):
+        logout(request)
+        return redirect('meublog:listar_posts')
