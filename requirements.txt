@@ -1,7 +1,7 @@
+-e githttps://github.com/castelogui/meu-blog.git@master#egg=meu-blog
 asgiref==3.3.4
 Django==3.2.3
 django-polls==0.2.1
 gunicorn==20.1.0
 pytz==2021.1
 sqlparse==0.4.1
--e git://github.com/castelogui/meu-blog.git@master#egg=Meu-blog
