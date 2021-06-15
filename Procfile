@@ -1,1 +1,1 @@
-web: gunicorn meusite.wsgi:django-polls --log-file -
+web: python manage.py runserver
