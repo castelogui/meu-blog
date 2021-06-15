@@ -4,4 +4,4 @@ django-polls==0.2.1
 gunicorn==20.1.0
 pytz==2021.1
 sqlparse==0.4.1
--e git+https://github.com/castelogui/meu-blog.git@main#egg=meu-blog
+-e git+https://github.com/castelogui/meu-blog.git@353e873783c7d42e831b3a73c2c4c7d492b9433d#egg=meu-blog
