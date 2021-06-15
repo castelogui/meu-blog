@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'gc+(hzml!z08!j7%&co(deb+n^48o0us%5v^=_zhj@g591_3*u'
+# SECRET_KEY = 'gc+(hzml!z08!j7%&co(deb+n^48o0us%5v^=_zhj@g591_3*u'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'hzml!z08!j7%&co(deb+n^48o0us%5v^=_zhj@g591_3*u')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = ['*']
 
@@ -119,6 +122,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
 
 # Email para testes
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
