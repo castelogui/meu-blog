@@ -1,4 +1,4 @@
--e githttps://github.com/castelogui/meu-blog.git@master#egg=meu-blog
+-e git+git@github.com:castelogui/meu-blog.git@master#egg=meu-blog
 asgiref==3.3.4
 Django==3.2.3
 django-polls==0.2.1
