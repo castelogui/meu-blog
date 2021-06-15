@@ -1,1 +1,1 @@
-web: gunicorn meusite.wsgi:meublog --log-file
+web: gunicorn meusite.wsgi:meublog --log-file -
